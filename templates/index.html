@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOCL Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        window.ENV_CONFIG = {
+            ENDPOINT: "{{ env_config.ENDPOINT }}",
+            DEPLOYMENT: "{{ env_config.DEPLOYMENT }}",
+            SUBSCRIPTION_KEY: "{{ env_config.SUBSCRIPTION_KEY }}",
+            SEARCH_ENDPOINT: "{{ env_config.SEARCH_ENDPOINT }}",
+            SEARCH_KEY: "{{ env_config.SEARCH_KEY }}",
+            SEARCH_INDEX: "{{ env_config.SEARCH_INDEX }}"
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="user-profile">
+                <img src="{{ url_for('static', filename='new.jpg') }}" alt="User Profile">
+                <h3>User</h3>
+            </div>
+            <div class="menu">
+                <button id="new-chat-btn" class="menu-btn" onclick="newChat()">New Chat</button>
+                <button class="menu-btn">Start a Conversation</button>
+            </div>
+        </div>
+
+        <div class="chat-area">
+            <div id="chatbot-window" class="chat-window">
+                <div id="chatbot-messages" class="messages"></div>
+                <div class="chat-footer">
+                    <input id="chat-input" type="text" placeholder="Send a message">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+            <!-- Add the pdf-container here to store the page number -->
+            <div id="pdf-container" data-page-num="{{ page_num }}"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
